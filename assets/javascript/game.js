@@ -25,15 +25,16 @@ var splitWord=randomWord.split("");
 console.log("var quoted splitWord: = ", splitWord);
 
 // -----------
-function dashesWord(randomWord) {
+function dashes(randomWord) {
     var dashes = []
     for (let i=0; i<randomWord.length; i++) {
       dashes.push("_");  
     }
     console.log(dashes);
     console.log(randomWord);
+    document.getElementById("#dashText").innerHTML=dashes(splitWord);
   }
-  dashesWord(splitWord);
+  console.log("trying to get this to run: ",dashes(splitWord));
   // ---------------
   
 //   var wordDashFunct=function dashes(randomWord) {
@@ -41,7 +42,6 @@ function dashesWord(randomWord) {
 //     for (let i=0; i<randomWord.length; i++) {
 //       dashes.push("_");  
 //     }
-//     document.getElementById("#dashText").innerHTML=wordDashFunct(splitWord);
 // }
 //  wordDashFunct(splitWord);
 
