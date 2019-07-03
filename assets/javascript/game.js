@@ -25,17 +25,19 @@ var splitWord=randomWord.split("");
 console.log("var quoted splitWord: = ", splitWord);
 
 // -----------
-function dashes(randomWord) {
-    var dashes = []
+var dashes=[]
+function createDashes(randomWord) { //only want this to run when a new round is run.
+    // dashes = []
     for (let i=0; i<randomWord.length; i++) {
       dashes.push("_");  
     }
     console.log(dashes);
     console.log(randomWord);
-    document.getElementById("#dashText").innerHTML=dashes(splitWord);
   }
-  console.log("trying to get this to run: ",dashes(splitWord));
-  // ---------------
+  createDashes(splitWord);
+  console.log("trying to get this to run: ",createDashes(splitWord));
+  document.getElementById("dashText").innerHTML=dashes.join(" "); // this is not what we want
+  // --------------- need to 
   
 //   var wordDashFunct=function dashes(randomWord) {
 //     var dashes = []
@@ -48,7 +50,15 @@ function dashes(randomWord) {
 
 //show this on my main screen
 
+//on click will run functionAll game logic on a click event.
+// if letter is inside split word 
+// else if letter isnt remove one from tje guess
 
+// if dash array ==== word array then I win, else if check if guesses===0
+// when removing guess from count, make sure it updates on the html
+
+
+// /reset function
 
 //----------parses the random word into multiple characters---//
 
