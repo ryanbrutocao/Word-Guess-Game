@@ -14,12 +14,18 @@
 
 <h1> Grocery Guessing Game!</h1>
 <p id="groceryRulesText">Press any key to start.</p>
-<p  id="currentWordText"></p>
+<p id="currentWordText"></p><br>
+Guesses Remaining: <p type="text" id="guessesRemaining"></p>
 <p><h3 id="winsText"></h3></p>
 <br>
-Word represented by dashes: <p type="text" id="dashText" onkeyup="function dashes(splitWord)"></p>
+Letters and dashes text: <p type="text" id="lettersAndDashesText" ></p>
 
- 
+letter Pressed:
+<h2>You just typed <span id="user-text"><strong>...Nothing.</strong></span></h2>
+
+
+<p id="demo"></p>
+<!-- <p type="text" id="letterPressedText" onkeypress=myFunction()></p> -->
 
   <script src="./assets/javascript/game.js"></script>
 </body>

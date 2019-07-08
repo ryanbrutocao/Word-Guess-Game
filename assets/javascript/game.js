@@ -1,69 +1,193 @@
-// list of words for the computer to randomly choose from
-var wordList=["apple", "banana", "carrot", "durian","eggplant","fennel","grapefruit", "huckleberry", "ice", "jalapeno", "kiwi", "lemons", "mangoes"]
-console.log("word array", wordList);
-var randomWord= wordList[Math.floor(Math.random()*wordList.length)];
-console.log("randomly chosen word:", randomWord);
+// -----------VARIABLES----------------//
 
-//not sure if I'll need this
-var wordLength=randomWord.length;
-// console.log("var wordLength= :", wordLength);
-document.getElementById("currentWordText").innerHTML=wordLength;
+//array of words
+var wordList=["APPLE", "BANANA", "ORANGE"];
+// ["apple", "banana", "carrot", "durian","eggplant","fennel","grapefruit", "huckleberry", "ice", "jalapeno", "kiwi", "lemons", "mangoes"];
+//computer randomly chooses a word
+var randomWord= "";
+//splits the random word into individual letters
+var randomWordLetters=[];
 
-// --------
-var sentence = randomWord;
+var letterGuess="";
 
-for (let i=0; i<randomWord.length; i++){
-console.log(sentence.charAt(i));
-}
-// ----------------
+var wrongLetters = [];
+
+var lettersAndDashes = [];
+
+// set user guess remaining count to 12
+var userGuessesRemaining = 0;
+var userWins = 0;
+var userLosses = 0;
 
 
-var splitWord=randomWord.split();
-console.log("var splitWord: = ", splitWord);
+// -----------FUNCTIONS----------------//
+// start game function
+// needs to start with setting the score to 12
+// needs to pick a random word
+//needs to set that word to a string
 
-var splitWord=randomWord.split("");
-console.log("var quoted splitWord: = ", splitWord);
 
-// -----------
-var dashes=[]
-function createDashes(randomWord) { //only want this to run when a new round is run.
-    // dashes = []
-    for (let i=0; i<randomWord.length; i++) {
-      dashes.push("_");  
-    }
-    console.log(dashes);
-    console.log(randomWord);
-  }
-  createDashes(splitWord);
-  console.log("trying to get this to run: ",createDashes(splitWord));
-  document.getElementById("dashText").innerHTML=dashes.join(" "); // this is not what we want
-  // --------------- need to 
+// check letters function
+// needs to swap letter for dash if correct
+// needs to log incorrect guesses and decrement guesses on wrong guess
+
+
+// round complete function that runs after each guess
+// if the words are equal then alert that I've won the game and add 1 to the win column
+// if remaining guesses hits 0, then alert that I've lost, add 1 to the loss column, and restart the game.
+//
+
+
+// function to start/run the game
+function playGame(event){
+  userGuessesRemaining=12
+  console.log("User Guesses remaining: ", userGuessesRemaining)
+  var randomWord= wordList[Math.floor(Math.random()*wordList.length)];
+  console.log("random word: ",randomWord);
+  var randomWordLetters=randomWord.split("");
   
-//   var wordDashFunct=function dashes(randomWord) {
-//     var dashes = []
-//     for (let i=0; i<randomWord.length; i++) {
-//       dashes.push("_");  
-//     }
+  console.log("random letters split: ",randomWordLetters);
+  lettersAndDashes = [];
+  // ----
+  document.onkeydown = function (e) {
+    var keyPress;
+     if (e) {
+      keyPress = e.which;
+    }
+    for (keypress, lettersAndDashes) {
+      if (keyPress===lettersAndDashes.indexOf){
+        return false;
+      }
+    }
+
+      lettersAndDashes.push(String.fromCharCode(keyPress));
+    document.getElementById("lettersAndDashesText").innerHTML = lettersAndDashes;
+    console.log("key pressed: ", String.fromCharCode(keyPress))
+  };
+  // for (let i=0; i<randomWord.length; i++) {
+  //   lettersAndDashes.push("_");  
+  // }
+  // document.addEventListener('input', function (e) {
+  //   e.target.value = e.target.value.toLowerCase();
+  // });
+
+
+}
+playGame();
+
+function letterChecker (keyPress) {
+  
+for (let i=0; i <randomWordLetters.length; i++)
+if (lettersAndDashes[i] === randomWordLetters[i]) {
+  alert ("yay!");
+  break;
+} else if (lettersAndDashes[i] != randomWordLetters[i]) {
+  alert ("No, not correct");
+  break;
+}
+console.log("My letter/dash array", lettersAndDashes);
+}
+letterChecker();
+console.log("letter checker :", letterChecker);
+// array for letters letterGuessed - check against it each round, if letter is present show letter, if letter not present show dash!
+//when letter guessed, push it to the array. 
+// check array against word
+// function letterChecker (event) {
+//   function keyStuff(event) {
+//     var x = event.charCode || event.keyCode;  // Get the Unicode value
+//     var y = String.fromCharCode(x);  // Convert the value into a character
+   
+// /*  The above 2 lines of code come from:
+// http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_event_key_charcode4 */
+
+//     alert("You pressed " + y + " and its charCode is " + x);
+//     // display which key was pressed, along with its charCode, in an alert
 // }
-//  wordDashFunct(splitWord);
+
+//   letterGuess = String.fromCharCode(event).toLowerCase();
+//   randomWordLetters.push("_");
+//   for (let i=0; i<randomWord.length; i++) {
+//     if (letterGuess === randomWordLetters[i]){
+//       lettersAndDashes.push(letter[i]);
+//     }
+//   }
+// }
+// letterChecker();
 
 
-//show this on my main screen
 
-//on click will run functionAll game logic on a click event.
-// if letter is inside split word 
-// else if letter isnt remove one from tje guess
 
-// if dash array ==== word array then I win, else if check if guesses===0
-// when removing guess from count, make sure it updates on the html
+
+
+
+
+
+
+
+  // document.onkeyup = function(event) {
+  //   for (let i=0; i<randomWord.length; i++) {
+  //     lettersAndDashes.push("_");  
+  //   }
+  //   // Captures the key press, converts it to lowercase, and saves it to a variable.
+  //   letterGuess = event.key.toLowerCase();
+  //   lettersAndDashes=[];
+  //   // If the letter is h, run the following functions/methods.
+  //   for (let i=0; i <randomWord.length; i++)
+  //   if (letterGuess === randomWordLetters[i]) {
+  //     alert ("yay!");
+  //     break;
+  //   } else if (letterGuess != randomWordLetters[i]) {
+  //     alert ("No, not correct");
+  //   }
+      
+  //     // lettersAndDashes.push(letterGuess);
+      
+  //   }
+
+  //   playGame();
+
+
+
+
+
+  //take key and check it against the first letter of the randomWord
+  // if letters match, show the letter on the screen;
+  // if letter matches check letter in the next position
+  // if letter does not match check letter in next position
+  //check against letter at all positions of word.
+  // if all letters of the random word array match all letters of the worddash array ==== word array then alert a win and reset the function
+      //if no matches found, write letter to screen 
+      //if no matches found, remvoe 1 from userGuess
+  // else show guessed letter on screen && remove 1 from user guesses remaining.
+  // when removing guess from count, make sure it updates on the html
+  
+
+// - function to pick random word from array
+
+
+
+// createDashes(splitWord);//this line calls the function, but causes it to show double on the screen so maay not be necessary at that part.
+
+// -----------EVENT LISTENERS----------------//
+
+
+
+
+
+// -----------PSEUDOCODE----------------//
+//  ---All game logic on a click event.
+//on click will run function 
+    // listen for key click
+    // on first click only, run function: that picks word and sets dashes (I think I can set the rest of the functions within this function so it wont finish/call the function again until I tell it to by userguesses hitting 0 and triggering)
+    //{ function will pick a random word from array
+        // random word is represented on the screen by dashes
+    //
+
+// word vs dashes
 
 
 // /reset function
 
-//----------parses the random word into multiple characters---//
-
-
-// -------------------- Good working code above------------------//
 
 
 
@@ -71,63 +195,3 @@ function createDashes(randomWord) { //only want this to run when a new round is 
 
 
 
-
-// input letter-  if that matches something in the array, then we want to change from a dash to show the actual letter else remove a count from the guesses.
-
-// function (input letter is user key)
-// if { user key matches switch dash for letter.
-
-// } else
-// remove a guess from the user guess. decerment i--;
-
-
-
-
-
-// var dashes = "";
-
-
-// for (i = 0; i < randomWord.length; i++) {
-//   if (randomWord.charAt(i) == " ") {
-//     dashes += " ";
-//   } else {
-//     dashes += "-";
-//   }
-// }
-// console.log("dashes:", dashes)
-
-
-// expected output: "The character at index 4 is q"
-
-
-// places the length of the word-- want to exchange 'wordLenght with a function that changes the letters to dashes
-// document.getElementById("currentWordText").innerHTML=wordLength;
-
-
-//function that changes letter to dashes (replace()) https://www.w3schools.com/jsref/jsref_replace.asp
-
-// need to break each letter in the string to its own array? split() and use charAt(i)? https://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_split
-//run if/else statement that checks each letter of the array against the user guess
-//if it finds a correct letter then change displayed letter from dash to letter
-// function dashFunction (){
-  
-  // }
-//  ------------------ 
-//   function myFunction() {
-//     var str = document.getElementById("demo").innerHTML; 
-//     var res = str.replace("Microsoft", "-");
-//     document.getElementById("demo").innerHTML = res;
-//   }
-//   -------------------
-
-// var array1 = ["apple", "banana", "carrot", "durian"];
-
-
-// var map1 = randomWord.split("");
-// console.log(map1);
-
-// // replace position 1 of array with a dashes, position 2 with a dash etc
-// function myFunction (i=0; i<randomWord.length; i++)  {
-//   var res = randomWord.replace(([i]), "_");
-//   document.getElementById("zebra").innerHTML = res;
-// }
