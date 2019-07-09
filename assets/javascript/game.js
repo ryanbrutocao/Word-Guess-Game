@@ -1,8 +1,7 @@
 // -----------VARIABLES----------------//
 
 //array of words
-var wordList=["AA", "A", "B", "BB", "C", "CC"];
-// ["apple", "banana", "carrot", "durian","eggplant","fennel","grapefruit", "huckleberry", "ice", "jalapeno", "kiwi", "lemons", "mangoes"];
+var wordList=["apple", "banana", "carrot", "durian","eggplant","fennel","grapefruit", "huckleberry", "ice", "jalapeno", "kiwi", "lemons", "mangoes"];
 //computer randomly chooses a word
 var randomWord= "";
 //splits the random word into individual letters
@@ -63,8 +62,26 @@ document.onkeydown = function (key) {
     keyPress = key.which;
   }
   console.log("this is the key code: ",keyPress)
-  letterGuess = correctLettersAndDashes.push(String.fromCharCode(keyPress));
-  letterGuess = String.fromCharCode(keyPress);
+
+  var letterGuess = String.fromCharCode(keyPress).toLowerCase();
+  if (randomWordLetters.indexOf(letterGuess) === -1) {
+    console.log("not in the array")
+    //log into the wrong answer array
+    wrongLetters.push(letterGuess);
+    console.log("Wrong Guesses:", wrongLetters);
+    //decrement the guessesRemaining
+    userGuessesRemaining--;
+    //(write inner.html to page here)
+    console.log("Guesses Remaining",userGuessesRemaining);
+  } else {
+    correctLettersAndDashes.push(letterGuess)
+  console.log("useranswer:",letterGuess)
+  console.log("index of:", randomWordLetters.indexOf(letterGuess))
+  
+  }
+
+  // letterGuess = correctLettersAndDashes.push(String.fromCharCode(keyPress));
+ letterGuess = String.fromCharCode(keyPress);
  console.log(letterGuess);
 //end logging key input (var letterguess = letter)
 
@@ -73,16 +90,17 @@ document.onkeydown = function (key) {
  console.log("correct letters and dashes: ", correctLettersAndDashes);
   
   // letter checker- key is already logged to an arraay, so we can check the arrays against eachother like this?
-  if (correctLettersAndDashes===randomWordLetters.indexOf([])){
-   correctLettersAndDashes.push(letterGuess)
-  }else {
-    alert("Nope, not in the word!")
-  }
+  // if (correctLettersAndDashes===randomWordLetters.indexOf([])){
+  //  correctLettersAndDashes.push(letterGuess)
+  // }else {
+  //   alert("Nope, not in the word!")
+  // }
 }
 
 }
 startGameFunction();
 
+// method to push to specific index JS = 
 
 
 //This logs the key stroke, but can only run once per cycle or else it adds up.
