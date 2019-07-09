@@ -7,12 +7,12 @@ var wordList=["APPLE", "BANANA", "ORANGE"];
 var randomWord= "";
 //splits the random word into individual letters
 var randomWordLetters=[];
-
+var numberOfLetters = 0;
 var letterGuess="";
 
 var wrongLetters = [];
 
-var lettersAndDashes = [];
+var correctLettersAndDashes = [];
 
 // set user guess remaining count to 12
 var userGuessesRemaining = 0;
@@ -22,102 +22,153 @@ var userLosses = 0;
 
 // -----------FUNCTIONS----------------//
 // start game function
-// needs to start with setting the score to 12
-// needs to pick a random word
-//needs to set that word to a string
+function startGameFunction (){
+  // needs to start with setting the guess count to 12
+  userGuessesRemaining=12
+
+  // needs to pick a random word
+  randomWord= wordList[Math.floor(Math.random()*wordList.length)];
+
+  //needs to set that word to a string
+  randomWordLetters=randomWord.split("");
+  console.log("This is the randomly chosen word:", randomWord);
+
+  // set a variable for the number of letters (to create an array later?)
+  numberOfLetters=randomWord.length
+  console.log("This is the number of letters: ", numberOfLetters);
+
+  //  set a variable to hold correct letters and dashes which will display on screen
+  correctLettersAndDashes = [];
+ 
+  //set a variable to hold incorrect guesses which will display on screen (also decrement guesses)
+  wrongLetters=[];
+  
+  // ----------needs to show that string as dashes
+  for (i=0; i<numberOfLetters; i++) {
+    correctLettersAndDashes.push("-");
+    console.log("should be ", + numberOfLetters + " dashes: ", correctLettersAndDashes  )
+  }
+console.log("correct letters/dashes: ", correctLettersAndDashes)
+document.getElementById("guessesRemainingText").innerHTML = userGuessesRemaining;
+// document.getElementById("correctLettersAndDashesText").innerHTML = correctLettersAndDashes;
+
+}
+startGameFunction();
 
 
-// check letters function
-// needs to swap letter for dash if correct
-// needs to log incorrect guesses and decrement guesses on wrong guess
 
+function checkLetterFunction (randomWordLetters, lettersAndDashes) {
+// if letters in any position in arr1 are the same as letters in arr2 at any position; alert true
+// if true, push/replace to dashes string
+//if false, needs to log the incorrect letters in an array and show on screen. 
+//if false, also needs to decrement 1 guess.
+for (let i=0; i<lettersAndDashes.length; i++) {
+  if (randomWordLetters.indexOf[i] === lettersAndDashes[i]) {
+    alert("HEY DUMMY THIS IS WORKING")
+}
+ 
+}
+
+
+
+}
 
 // round complete function that runs after each guess
-// if the words are equal then alert that I've won the game and add 1 to the win column
-// if remaining guesses hits 0, then alert that I've lost, add 1 to the loss column, and restart the game.
 //
+function roundComplete (word1, word2) {
+  // if remaining guesses hits 0, then alert that I've lost, add 1 to the loss column, and restart the game.
+  // if the words are equal then alert that I've won the game and add 1 to the win column
 
 
-// function to start/run the game
+}
+
+
+
+
+
+// function to start/run the game ----------------------------------------
 function playGame(event){
-  userGuessesRemaining=12
-  console.log("User Guesses remaining: ", userGuessesRemaining)
+  let userGuessesRemaining=12
   var randomWord= wordList[Math.floor(Math.random()*wordList.length)];
-  console.log("random word: ",randomWord);
   var randomWordLetters=randomWord.split("");
-  
+  console.log("User Guesses remaining: ", userGuessesRemaining)
+  console.log("random word: ",randomWord);
   console.log("random letters split: ",randomWordLetters);
+  
+  document.getElementById("guessesRemainingText").innerHTML = userGuessesRemaining;
   lettersAndDashes = [];
-  // ----
+  
   document.onkeydown = function (e) {
     var keyPress;
-     if (e) {
+    if (e) {
       keyPress = e.which;
     }
-    for (keypress, lettersAndDashes) {
-      if (keyPress===lettersAndDashes.indexOf){
-        return false;
-      }
-    }
+    lettersAndDashes.push(String.fromCharCode(keyPress));
 
-      lettersAndDashes.push(String.fromCharCode(keyPress));
-    document.getElementById("lettersAndDashesText").innerHTML = lettersAndDashes;
+    document.getElementById("wrongLetterText").innerHTML = lettersAndDashes.join();
+
     console.log("key pressed: ", String.fromCharCode(keyPress))
   };
-  // for (let i=0; i<randomWord.length; i++) {
-  //   lettersAndDashes.push("_");  
-  // }
-  // document.addEventListener('input', function (e) {
-  //   e.target.value = e.target.value.toLowerCase();
-  // });
-
-
+  
 }
 playGame();
 
-function letterChecker (keyPress) {
+
+function letterChecking (randomWordLetters) { 
+
+  for (let i=0; i<lettersAndDashes.length; i++){
+if (randomWordLetters.indexOf([i]) === lettersAndDashes) {
+  console.log("HEY DUMMY THIS IS WORKING")
+break;
+}  
+else if (keyPress===lettersAndDashes.indexOf[i],true){
+  userGuessesRemaining--;
+  return false;
+}
+}
+}
+letterChecking();
+
+function checking (word1, word2) {
+  randomWordLetters = [""]
+  lettersAndDashes = ""
+  //see below. currently need to change array from split letters to look more like the object array I accidentally created.
+}
+// if key pressed = any letter in random word array then push to new array of dashes and letters and log at the  correct position
+// if letter in newdashletter array ===  letter in randomwordArray .index(charAt) then push the letters, if not, push a dash.
+//somewhere, something is set to false. If function makes it true, then do the action.
+//--------------------------------------------------------------------------
+
+
+
+
+
+// function letterChecker (keyPress) {
   
-for (let i=0; i <randomWordLetters.length; i++)
-if (lettersAndDashes[i] === randomWordLetters[i]) {
-  alert ("yay!");
-  break;
-} else if (lettersAndDashes[i] != randomWordLetters[i]) {
-  alert ("No, not correct");
-  break;
-}
-console.log("My letter/dash array", lettersAndDashes);
-}
-letterChecker();
-console.log("letter checker :", letterChecker);
+// for (let i=0; i <randomWordLetters.length; i++)
+// if (lettersAndDashes[i] === randomWordLetters[i]) {
+//   alert ("yay!");
+//   break;
+// } else if (lettersAndDashes[i] != randomWordLetters[i]) {
+//   alert ("No, not correct");
+//   break;
+// }
+// }
+// letterChecker();
+// console.log("My letter/dash object array", lettersAndDashes);
+// console.log("letter checker :", letterChecker);
 // array for letters letterGuessed - check against it each round, if letter is present show letter, if letter not present show dash!
 //when letter guessed, push it to the array. 
 // check array against word
-// function letterChecker (event) {
-//   function keyStuff(event) {
-//     var x = event.charCode || event.keyCode;  // Get the Unicode value
-//     var y = String.fromCharCode(x);  // Convert the value into a character
-   
-// /*  The above 2 lines of code come from:
-// http://www.w3schools.com/jsref/tryit.asp?filename=tryjsref_event_key_charcode4 */
 
-//     alert("You pressed " + y + " and its charCode is " + x);
-//     // display which key was pressed, along with its charCode, in an alert
-// }
 
-//   letterGuess = String.fromCharCode(event).toLowerCase();
-//   randomWordLetters.push("_");
-//   for (let i=0; i<randomWord.length; i++) {
-//     if (letterGuess === randomWordLetters[i]){
-//       lettersAndDashes.push(letter[i]);
-//     }
-//   }
-// }
-// letterChecker();
+//          testing this out                    //
 
 
 
 
 
+// ------- End Testing -----------//
 
 
 
@@ -127,13 +178,14 @@ console.log("letter checker :", letterChecker);
   // document.onkeyup = function(event) {
   //   for (let i=0; i<randomWord.length; i++) {
   //     lettersAndDashes.push("_");  
+  //     console.log("looking for dashes", lettersAndDashes)
   //   }
   //   // Captures the key press, converts it to lowercase, and saves it to a variable.
-  //   letterGuess = event.key.toLowerCase();
+  //   letterGuess = event.key.toUpperCase();
   //   lettersAndDashes=[];
   //   // If the letter is h, run the following functions/methods.
   //   for (let i=0; i <randomWord.length; i++)
-  //   if (letterGuess === randomWordLetters[i]) {
+  //   if (lettersAndDashes === randomWordLetters[i]) {
   //     alert ("yay!");
   //     break;
   //   } else if (letterGuess != randomWordLetters[i]) {
@@ -143,9 +195,9 @@ console.log("letter checker :", letterChecker);
   //     // lettersAndDashes.push(letterGuess);
       
   //   }
-
+    
   //   playGame();
-
+  //   console.log("playgame one :", playGame())
 
 
 
