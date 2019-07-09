@@ -20,6 +20,7 @@ var userWins = 0;
 var userLosses = 0;
 
 
+
 // -----------FUNCTIONS----------------//
 // start game function
 function startGameFunction (){
@@ -57,22 +58,50 @@ startGameFunction();
 
 
 
-function checkLetterFunction (randomWordLetters, lettersAndDashes) {
+//This logs the key stroke, but can only run once per cycle or else it adds up.
+var data = "";
+window.addEventListener("keypress", processKeyPress, false);
+function processKeyPress(event)
+{
+  data += String.fromCharCode(event.charCode);
+  console.log("data data data:", data)
+}
+processKeyPress();
+// end of function.
+
+
+
 // if letters in any position in arr1 are the same as letters in arr2 at any position; alert true
+if (randomWordLetters.toString() === correctLettersAndDashes.toString()){
+  userWins++;
+}
+function lettercheckinggg (){
+  //change dash to letter;
+for (i=0; i<randomWordLetters.length; i++) {
+if (processKeyPress() = randomWordLetters[i])
+ 
+return true;
+}
+if (randomWordLetters.toString() != correctLettersAndDashes.toString()){
+  userGuessesRemaining--;
+  //if false, needs to log the incorrect letters in an array and show on screen. 
+  return false;
+}
+
+}
 // if true, push/replace to dashes string
-//if false, needs to log the incorrect letters in an array and show on screen. 
+
+
 //if false, also needs to decrement 1 guess.
-for (let i=0; i<lettersAndDashes.length; i++) {
-  if (randomWordLetters.indexOf[i] === lettersAndDashes[i]) {
+for (let i=0; i<numberOfLetters; i++) {
+  if (String.fromCharCode(event.charCode) ===randomWordLetters.indexOf[i]) {
     alert("HEY DUMMY THIS IS WORKING")
 }
- 
 }
 
 
 
-}
-
+checkLetterFunction();
 // round complete function that runs after each guess
 //
 function roundComplete (word1, word2) {
@@ -98,42 +127,49 @@ function playGame(event){
   document.getElementById("guessesRemainingText").innerHTML = userGuessesRemaining;
   lettersAndDashes = [];
   
-  document.onkeydown = function (e) {
-    var keyPress;
-    if (e) {
-      keyPress = e.which;
-    }
-    lettersAndDashes.push(String.fromCharCode(keyPress));
-
-    document.getElementById("wrongLetterText").innerHTML = lettersAndDashes.join();
-
-    console.log("key pressed: ", String.fromCharCode(keyPress))
-  };
-  
 }
 playGame();
 
 
-function letterChecking (randomWordLetters) { 
 
-  for (let i=0; i<lettersAndDashes.length; i++){
-if (randomWordLetters.indexOf([i]) === lettersAndDashes) {
-  console.log("HEY DUMMY THIS IS WORKING")
-break;
-}  
-else if (keyPress===lettersAndDashes.indexOf[i],true){
-  userGuessesRemaining--;
-  return false;
-}
-}
-}
-letterChecking();
 
-function checking (word1, word2) {
-  randomWordLetters = [""]
-  lettersAndDashes = ""
-  //see below. currently need to change array from split letters to look more like the object array I accidentally created.
-}
+
+document.onkeydown = function (key) {
+  var keyPress="";
+  if (key) {
+    keyPress = key.which;
+  }
+  // console.log("this is the key I pressed: ",keyPress)
+ letterGuess = lettersAndDashes.push(String.fromCharCode(keyPress));
+ console.log(letterGuess);
+ console.log(lettersAndDashes);
+  document.getElementById("wrongLetterText").innerHTML = lettersAndDashes.join();
+  letterGuess=(String.fromCharCode(keyPress))
+  console.log("key pressed: ", String.fromCharCode(keyPress))
+};
+
+
+
+// function letterChecking (randomWordLetters) { 
+
+//   for (let i=0; i<lettersAndDashes.length; i++){
+// if (randomWordLetters.indexOf([i]) === lettersAndDashes) {
+//   console.log("HEY DUMMY THIS IS WORKING")
+// break;
+// }  
+// else if (keyPress===lettersAndDashes.indexOf[i],true){
+//   userGuessesRemaining--;
+//   return false;
+// }
+// }
+// }
+// letterChecking();
+
+// function checking (word1, word2) {
+//   randomWordLetters = [""]
+//   lettersAndDashes = ""
+//   //see below. currently need to change array from split letters to look more like the object array I accidentally created.
+// }
 // if key pressed = any letter in random word array then push to new array of dashes and letters and log at the  correct position
 // if letter in newdashletter array ===  letter in randomwordArray .index(charAt) then push the letters, if not, push a dash.
 //somewhere, something is set to false. If function makes it true, then do the action.
