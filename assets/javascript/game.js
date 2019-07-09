@@ -1,7 +1,7 @@
 // -----------VARIABLES----------------//
 
 //array of words
-var wordList=["APPLE", "BANANA", "ORANGE"];
+var wordList=["AA", "A", "B", "BB", "C", "CC"];
 // ["apple", "banana", "carrot", "durian","eggplant","fennel","grapefruit", "huckleberry", "ice", "jalapeno", "kiwi", "lemons", "mangoes"];
 //computer randomly chooses a word
 var randomWord= "";
@@ -26,13 +26,14 @@ var userLosses = 0;
 function startGameFunction (){
   // needs to start with setting the guess count to 12
   userGuessesRemaining=12
+  // document.getElementById("guessesRemainingText").innerHTML = userGuessesRemaining;
 
   // needs to pick a random word
   randomWord= wordList[Math.floor(Math.random()*wordList.length)];
-
+  console.log("This is the randomly chosen word:", randomWord);
   //needs to set that word to a string
   randomWordLetters=randomWord.split("");
-  console.log("This is the randomly chosen word:", randomWord);
+  console.log("This is the randomly chosen word:", randomWordLetters);
 
   // set a variable for the number of letters (to create an array later?)
   numberOfLetters=randomWord.length
@@ -47,11 +48,37 @@ function startGameFunction (){
   // ----------needs to show that string as dashes
   for (i=0; i<numberOfLetters; i++) {
     correctLettersAndDashes.push("-");
-    console.log("should be ", + numberOfLetters + " dashes: ", correctLettersAndDashes  )
   }
+  
 console.log("correct letters/dashes: ", correctLettersAndDashes)
-document.getElementById("guessesRemainingText").innerHTML = userGuessesRemaining;
-// document.getElementById("correctLettersAndDashesText").innerHTML = correctLettersAndDashes;
+document.getElementById("correctLettersAndDashesText").innerHTML = correctLettersAndDashes;
+document.getElementById("wrongLetterText").innerHTML = correctLettersAndDashes.join();
+
+//(I'm logging the correct number of dashes for letters, will need to replace letter guessed at index of?)
+
+// Logging the key input//
+document.onkeydown = function (key) {
+  var keyPress="";
+  if (key) {
+    keyPress = key.which;
+  }
+  console.log("this is the key code: ",keyPress)
+  letterGuess = correctLettersAndDashes.push(String.fromCharCode(keyPress));
+  letterGuess = String.fromCharCode(keyPress);
+ console.log(letterGuess);
+//end logging key input (var letterguess = letter)
+
+ letterGuess=(String.fromCharCode(keyPress))
+ console.log("Random Word Letters Array:", randomWordLetters)
+ console.log("correct letters and dashes: ", correctLettersAndDashes);
+  
+  // letter checker- key is already logged to an arraay, so we can check the arrays against eachother like this?
+  if (correctLettersAndDashes===randomWordLetters.indexOf([])){
+   correctLettersAndDashes.push(letterGuess)
+  }else {
+    alert("Nope, not in the word!")
+  }
+}
 
 }
 startGameFunction();
@@ -59,15 +86,23 @@ startGameFunction();
 
 
 //This logs the key stroke, but can only run once per cycle or else it adds up.
-var data = "";
-window.addEventListener("keypress", processKeyPress, false);
-function processKeyPress(event)
-{
-  data += String.fromCharCode(event.charCode);
-  console.log("data data data:", data)
-}
-processKeyPress();
+// var data = "";
+// window.addEventListener("keypress", processKeyPress, false);
+// function processKeyPress(event)
+// {
+//   data += String.fromCharCode(event.charCode);
+//   console.log("data data data:", data)
+// }
+// processKeyPress();
 // end of function.
+
+
+// console.log("randomwordletters.tostring: ", randomWordLetters);
+// console.log("letterguess.tostring: ", letterGuess)
+
+
+
+
 
 
 
@@ -84,6 +119,7 @@ return true;
 }
 if (randomWordLetters.toString() != correctLettersAndDashes.toString()){
   userGuessesRemaining--;
+  document.getElementById("userGuessesRemainingText").innerHTML = userGuessesRemaining;
   //if false, needs to log the incorrect letters in an array and show on screen. 
   return false;
 }
@@ -93,23 +129,34 @@ if (randomWordLetters.toString() != correctLettersAndDashes.toString()){
 
 
 //if false, also needs to decrement 1 guess.
-for (let i=0; i<numberOfLetters; i++) {
-  if (String.fromCharCode(event.charCode) ===randomWordLetters.indexOf[i]) {
-    alert("HEY DUMMY THIS IS WORKING")
-}
-}
+// for (let i=0; i<numberOfLetters; i++) {
+//   if (String.fromCharCode(event.charCode) ===randomWordLetters.indexOf[i]) {
+//     alert("HEY DUMMY THIS IS WORKING")
+// }
+// }
 
-
-
-checkLetterFunction();
+// checkLetterFunction();
 // round complete function that runs after each guess
 //
 function roundComplete (word1, word2) {
+  if(userGuessesRemaining===0){
+    userLosses++;
+    
+    alert("You lost the game, nice try!");
+    document.getElementById("userLossesText").innerHTML = userLosses;
+
+    startGameFunction();
+  }else if (randomWordLetters.toString()===correctLettersAndDashes.toString()){
+    alert ("You've won! Congrats!");
+    userWins++;
+    document.getElementById("userWinsText").innerHTML = userWins;
+
+    startGameFunction(randomWordLetters, correctLettersAndDashes);
+  }
+  }
   // if remaining guesses hits 0, then alert that I've lost, add 1 to the loss column, and restart the game.
   // if the words are equal then alert that I've won the game and add 1 to the win column
 
-
-}
 
 
 
@@ -124,8 +171,8 @@ function playGame(event){
   console.log("random word: ",randomWord);
   console.log("random letters split: ",randomWordLetters);
   
-  document.getElementById("guessesRemainingText").innerHTML = userGuessesRemaining;
-  lettersAndDashes = [];
+  document.getElementById("userGuessesRemainingText").innerHTML = userGuessesRemaining;
+  correctLettersAndDashes = [];
   
 }
 playGame();
@@ -134,19 +181,7 @@ playGame();
 
 
 
-document.onkeydown = function (key) {
-  var keyPress="";
-  if (key) {
-    keyPress = key.which;
-  }
-  // console.log("this is the key I pressed: ",keyPress)
- letterGuess = lettersAndDashes.push(String.fromCharCode(keyPress));
- console.log(letterGuess);
- console.log(lettersAndDashes);
-  document.getElementById("wrongLetterText").innerHTML = lettersAndDashes.join();
-  letterGuess=(String.fromCharCode(keyPress))
-  console.log("key pressed: ", String.fromCharCode(keyPress))
-};
+
 
 
 
