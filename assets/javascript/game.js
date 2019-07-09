@@ -48,7 +48,8 @@ function startGameFunction (){
   for (i=0; i<numberOfLetters; i++) {
     correctLettersAndDashes.push("-");
   }
-  
+  userLosses;
+
 console.log("correct letters/dashes: ", correctLettersAndDashes)
 document.getElementById("correctLettersAndDashesText").innerHTML = correctLettersAndDashes;
 document.getElementById("wrongLetterText").innerHTML = correctLettersAndDashes.join();
@@ -61,28 +62,47 @@ document.onkeydown = function (key) {
   if (key) {
     keyPress = key.which;
   }
-  console.log("this is the key code: ",keyPress)
+  // console.log("this is the key code: ",keyPress)
 
   var letterGuess = String.fromCharCode(keyPress).toLowerCase();
   if (randomWordLetters.indexOf(letterGuess) === -1) {
-    console.log("not in the array")
-    //log into the wrong answer array
-    wrongLetters.push(letterGuess);
-    console.log("Wrong Guesses:", wrongLetters);
     //decrement the guessesRemaining
     userGuessesRemaining--;
+    // console.log("not in the array")
+    //log into the wrong answer array
+    wrongLetters.push(letterGuess);
+    document.getElementById("wrongLetterText").innerHTML = wrongLetters;
+    console.log("Wrong Guesses:", wrongLetters);
     //(write inner.html to page here)
     console.log("Guesses Remaining",userGuessesRemaining);
-  } else {
+    document.getElementById("userGuessesRemainingText").innerHTML = userGuessesRemaining;
+    
+    if (userGuessesRemaining===0){
+      userLosses;
+      userLosses++;
+      document.getElementById("userLossesText").innerHTML = userLosses; //not working properly
+      userGuessesRemaining=12;
+      alert("Sorry, you lost!");
+      startGameFunction();
+    } 
+  } 
+  else {
     correctLettersAndDashes.push(letterGuess)
-  console.log("useranswer:",letterGuess)
-  console.log("index of:", randomWordLetters.indexOf(letterGuess))
-  
+  // console.log("useranswer:",letterGuess)
+  // console.log("index of:", randomWordLetters.indexOf(letterGuess))
+  document.getElementById("correctLettersAndDashesText").innerHTML = correctLettersAndDashes;
+   if (correctLettersAndDashes===randomWordLetters) {
+    userGuessesRemaining; 
+    userGuessesRemaining=12;
+     alert("You win! Great Job!!!");
+     startGameFunction();
+
+   }
   }
 
   // letterGuess = correctLettersAndDashes.push(String.fromCharCode(keyPress));
- letterGuess = String.fromCharCode(keyPress);
- console.log(letterGuess);
+//  letterGuess = String.fromCharCode(keyPress);
+//  console.log(letterGuess);
 //end logging key input (var letterguess = letter)
 
  letterGuess=(String.fromCharCode(keyPress))
@@ -99,6 +119,32 @@ document.onkeydown = function (key) {
 
 }
 startGameFunction();
+
+//// For the TA's/////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+// I spent about 40 hours on this assignment (maybe more). I worked on it for two sessions 
+// with my tutor and this is all of the progress I could make. 
+// I really wish I had tried the easier option first.
+// I think that in theory, I am kind of close, but I cant figure out 
+// how to get correct letters to replace dashes. I did not have
+// any spare time to get any html/css done. I am very frustrated 
+// that I spent so much time on it as it did not allow me time to 
+// study anything else. My tutor suggested that I talk to you guys
+// about this.  She also recommended I spend more time on the class 
+// activities. Hopefully things start clicking because I'm really 
+// feeling like I'm not getting it and am wasting tons of time being 
+//  so slow and only getting half way done. All that said, I haven't 
+//  even began to understand jquery. I've given almost every waking moment
+// of my time to this homework and JS over the past 3 weeks. Not sure
+// how much more I can give. I feel like I'm studying wrong because this
+// should be making sense to me with all of the time I've give it.
+// -Ryan
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 
 // method to push to specific index JS = 
 
@@ -156,22 +202,22 @@ if (randomWordLetters.toString() != correctLettersAndDashes.toString()){
 // checkLetterFunction();
 // round complete function that runs after each guess
 //
-function roundComplete (word1, word2) {
-  if(userGuessesRemaining===0){
-    userLosses++;
+// function roundComplete (word1, word2) {
+//   if(userGuessesRemaining===0){
+//     userLosses++;
     
-    alert("You lost the game, nice try!");
-    document.getElementById("userLossesText").innerHTML = userLosses;
+//     alert("You lost the game, nice try!");
+//     document.getElementById("userLossesText").innerHTML = userLosses;
 
-    startGameFunction();
-  }else if (randomWordLetters.toString()===correctLettersAndDashes.toString()){
-    alert ("You've won! Congrats!");
-    userWins++;
-    document.getElementById("userWinsText").innerHTML = userWins;
+//     startGameFunction();
+//   }else if (randomWordLetters.toString()===correctLettersAndDashes.toString()){
+//     alert ("You've won! Congrats!");
+//     userWins++;
+//     document.getElementById("userWinsText").innerHTML = userWins;
 
-    startGameFunction(randomWordLetters, correctLettersAndDashes);
-  }
-  }
+//     startGameFunction(randomWordLetters, correctLettersAndDashes);
+//   }
+//   }
   // if remaining guesses hits 0, then alert that I've lost, add 1 to the loss column, and restart the game.
   // if the words are equal then alert that I've won the game and add 1 to the win column
 
@@ -181,19 +227,19 @@ function roundComplete (word1, word2) {
 
 
 // function to start/run the game ----------------------------------------
-function playGame(event){
-  let userGuessesRemaining=12
-  var randomWord= wordList[Math.floor(Math.random()*wordList.length)];
-  var randomWordLetters=randomWord.split("");
-  console.log("User Guesses remaining: ", userGuessesRemaining)
-  console.log("random word: ",randomWord);
-  console.log("random letters split: ",randomWordLetters);
+// function playGame(event){
+//   let userGuessesRemaining=12
+//   var randomWord= wordList[Math.floor(Math.random()*wordList.length)];
+//   var randomWordLetters=randomWord.split("");
+//   console.log("User Guesses remaining: ", userGuessesRemaining)
+//   console.log("random word: ",randomWord);
+//   console.log("random letters split: ",randomWordLetters);
   
-  document.getElementById("userGuessesRemainingText").innerHTML = userGuessesRemaining;
-  correctLettersAndDashes = [];
+//   document.getElementById("userGuessesRemainingText").innerHTML = userGuessesRemaining;
+//   correctLettersAndDashes = [];
   
-}
-playGame();
+// }
+// playGame();
 
 
 
