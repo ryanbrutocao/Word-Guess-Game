@@ -51,8 +51,6 @@ function startGameFunction (){
   userLosses;
 
 console.log("correct letters/dashes: ", correctLettersAndDashes)
-document.getElementById("correctLettersAndDashesText").innerHTML = correctLettersAndDashes;
-document.getElementById("wrongLetterText").innerHTML = correctLettersAndDashes.join();
 
 //(I'm logging the correct number of dashes for letters, will need to replace letter guessed at index of?)
 
@@ -62,52 +60,72 @@ document.onkeydown = function (key) {
   if (key) {
     keyPress = key.which;
   }
+  letterGuess = String.fromCharCode(keyPress).toLowerCase();
   // console.log("this is the key code: ",keyPress)
-
-  var letterGuess = String.fromCharCode(keyPress).toLowerCase();
+  
+  for (i=0; i<wrongLetters.length;i++){
+  if (letterGuess===wrongLetters[i]) {
+    alert("you've already tried that letter")
+  }}
   if (randomWordLetters.indexOf(letterGuess) === -1) {
-    //decrement the guessesRemaining
     userGuessesRemaining--;
-    // console.log("not in the array")
-    //log into the wrong answer array
-    wrongLetters.push(letterGuess);
+    wrongLetters.push(letterGuess)
     document.getElementById("wrongLetterText").innerHTML = wrongLetters;
-    console.log("Wrong Guesses:", wrongLetters);
-    //(write inner.html to page here)
-    console.log("Guesses Remaining",userGuessesRemaining);
     document.getElementById("userGuessesRemainingText").innerHTML = userGuessesRemaining;
-    
-    if (userGuessesRemaining===0){
-      userLosses;
-      userLosses++;
-      document.getElementById("userLossesText").innerHTML = userLosses; //not working properly
-      userGuessesRemaining=12;
-      alert("Sorry, you lost!");
-      startGameFunction();
-    } 
-  } 
-  else {
-    correctLettersAndDashes.push(letterGuess)
-  // console.log("useranswer:",letterGuess)
-  // console.log("index of:", randomWordLetters.indexOf(letterGuess))
-  document.getElementById("correctLettersAndDashesText").innerHTML = correctLettersAndDashes;
-   if (correctLettersAndDashes===randomWordLetters) {
-    userGuessesRemaining; 
-    userGuessesRemaining=12;
-     alert("You win! Great Job!!!");
-     startGameFunction();
 
-   }
   }
+
+  
+  if (userGuessesRemaining===0){
+    userLosses++;
+    document.getElementById("userLossesText").innerHTML = userLosses; //not working properly
+    alert("Sorry, you lost!");
+    userGuessesRemaining=12;
+    startGameFunction();
+  } 
+  
+  randomWordLetters;
+  correctLettersAndDashes;
+  letterGuess;
+  for (let i=0; i<randomWordLetters.length; i++){
+    if (randomWordLetters[i]===letterGuess){
+      correctLettersAndDashes[i]=letterGuess;
+      
+    }
+    if (correctLettersAndDashes.join("")===randomWordLetters.join("")) {
+      userWins++
+      document.getElementById("userWinsText").innerHTML = userWins;
+
+      alert("You win! Great Job!!!");
+      userGuessesRemaining=12;
+      startGameFunction();      
+    }
+    
+  }
+document.getElementById("correctLettersAndDashesText").innerHTML = correctLettersAndDashes;
+}
+
+}
+
+
+startGameFunction();
+
+
+
+
+
+// correctLettersAndDashes.push(letterGuess)
+// console.log("useranswer:",letterGuess)
+// console.log("index of:", randomWordLetters.indexOf(letterGuess))
 
   // letterGuess = correctLettersAndDashes.push(String.fromCharCode(keyPress));
 //  letterGuess = String.fromCharCode(keyPress);
 //  console.log(letterGuess);
 //end logging key input (var letterguess = letter)
 
- letterGuess=(String.fromCharCode(keyPress))
- console.log("Random Word Letters Array:", randomWordLetters)
- console.log("correct letters and dashes: ", correctLettersAndDashes);
+//  letterGuess=(String.fromCharCode(keyPress))
+//  console.log("Random Word Letters Array:", randomWordLetters)
+//  console.log("correct letters and dashes: ", correctLettersAndDashes);
   
   // letter checker- key is already logged to an arraay, so we can check the arrays against eachother like this?
   // if (correctLettersAndDashes===randomWordLetters.indexOf([])){
@@ -115,10 +133,6 @@ document.onkeydown = function (key) {
   // }else {
   //   alert("Nope, not in the word!")
   // }
-}
-
-}
-startGameFunction();
 
 //// For the TA's/////
 //////////////////////////////////////////////////////////////
