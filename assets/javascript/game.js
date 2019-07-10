@@ -24,7 +24,6 @@ var userLosses = 0;
 // start game function
 function startGameFunction (){
   // needs to start with setting the guess count to 12
-  userGuessesRemaining=12
   // document.getElementById("guessesRemainingText").innerHTML = userGuessesRemaining;
 
   // needs to pick a random word
@@ -38,23 +37,39 @@ function startGameFunction (){
   numberOfLetters=randomWord.length
   console.log("This is the number of letters: ", numberOfLetters);
 
+ 
+  
+  // ----------needs to show that string as dashes
+  // userLosses;
+  
+  console.log("correct letters/dashes: ", correctLettersAndDashes)
+  
+  //(I'm logging the correct number of dashes for letters, will need to replace letter guessed at index of?)
+  
+  // Logging the key input//
+  reset();
+}
+
+function reset () {
+  userGuessesRemaining=12
   //  set a variable to hold correct letters and dashes which will display on screen
   correctLettersAndDashes = [];
- 
   //set a variable to hold incorrect guesses which will display on screen (also decrement guesses)
   wrongLetters=[];
   
-  // ----------needs to show that string as dashes
   for (i=0; i<numberOfLetters; i++) {
-    correctLettersAndDashes.push("-");
+    correctLettersAndDashes.push("_");
   }
-  userLosses;
+  
+  document.getElementById("userLossesText").innerHTML = userLosses; //not working properly
+  document.getElementById("wrongLetterText").innerHTML = wrongLetters;
+  document.getElementById("userGuessesRemainingText").innerHTML = userGuessesRemaining;
+  document.getElementById("userWinsText").innerHTML = userWins;
+  document.getElementById("correctLettersAndDashesText").innerHTML = correctLettersAndDashes;
 
-console.log("correct letters/dashes: ", correctLettersAndDashes)
+}
 
-//(I'm logging the correct number of dashes for letters, will need to replace letter guessed at index of?)
 
-// Logging the key input//
 document.onkeydown = function (key) {
   var keyPress="";
   if (key) {
@@ -63,50 +78,50 @@ document.onkeydown = function (key) {
   letterGuess = String.fromCharCode(keyPress).toLowerCase();
   // console.log("this is the key code: ",keyPress)
   
-  for (i=0; i<wrongLetters.length;i++){
-  if (letterGuess===wrongLetters[i]) {
-    alert("you've already tried that letter")
-  }}
+  if (wrongLetters.indexOf(letterGuess) === -1) { 
+
+  
   if (randomWordLetters.indexOf(letterGuess) === -1) {
     userGuessesRemaining--;
-    wrongLetters.push(letterGuess)
-    document.getElementById("wrongLetterText").innerHTML = wrongLetters;
     document.getElementById("userGuessesRemainingText").innerHTML = userGuessesRemaining;
 
-  }
+    wrongLetters.push(letterGuess);
+    document.getElementById("wrongLetterText").innerHTML = wrongLetters;
 
+
+  }
   
-  if (userGuessesRemaining===0){
-    userLosses++;
-    document.getElementById("userLossesText").innerHTML = userLosses; //not working properly
-    alert("Sorry, you lost!");
-    userGuessesRemaining=12;
-    startGameFunction();
-  } 
-  
-  randomWordLetters;
-  correctLettersAndDashes;
-  letterGuess;
+    // if (letterGuess===wrongLetters[i]) {
+    //     alert("you've already tried that letter")
+    //   }
+
+      //run an if statement that checks if guessed letter is inside of already guessed letter.
+
+
+
+  // randomWordLetters;
+  // correctLettersAndDashes;
+  // letterGuess;
   for (let i=0; i<randomWordLetters.length; i++){
     if (randomWordLetters[i]===letterGuess){
       correctLettersAndDashes[i]=letterGuess;
-      
-    }
-    if (correctLettersAndDashes.join("")===randomWordLetters.join("")) {
-      userWins++
-      document.getElementById("userWinsText").innerHTML = userWins;
+      document.getElementById("correctLettersAndDashesText").innerHTML = correctLettersAndDashes;
 
-      alert("You win! Great Job!!!");
-      userGuessesRemaining=12;
-      startGameFunction();      
     }
-    
   }
-document.getElementById("correctLettersAndDashesText").innerHTML = correctLettersAndDashes;
+  if (correctLettersAndDashes.join("")===randomWordLetters.join("")) {
+    userWins++
+    
+   setTimeout(alert,10,"You win! Great Job!!!");
+    // userGuessesRemaining=12;
+    setTimeout(startGameFunction, 10);      
+  } else if (userGuessesRemaining===0){
+    userLosses++;
+   setTimeout(alert,10,"Sorry, you lost!");
+    // userGuessesRemaining=12;
+    setTimeout(startGameFunction,10);
+  } }
 }
-
-}
-
 
 startGameFunction();
 
