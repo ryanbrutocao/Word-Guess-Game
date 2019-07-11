@@ -5,8 +5,9 @@ body {
   text-align: center;
 }
 .jumbotron {
-  background-color: #777777;
+  background-color: #ffffff;
  margin:4% 10%;
+ opacity: .85;
 }
 .fruit-left {
 
