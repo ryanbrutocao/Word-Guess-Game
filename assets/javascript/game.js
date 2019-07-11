@@ -1,7 +1,7 @@
 // -----------VARIABLES----------------//
 
 //array of words
-var wordList=["apple", "banana", "carrot", "durian","eggplant","fennel","grapefruit", "huckleberry", "ice", "jalapeno", "kiwi", "lemons", "mangoes"];
+var wordList=["apple", "pineapple", "orange", "watermelon", "banana", "carrot", "durian","eggplant","fennel","grapefruit", "huckleberry", "ice", "jalapeno", "kiwi", "lemons", "mangoes"];
 //computer randomly chooses a word
 var randomWord= "";
 //splits the random word into individual letters

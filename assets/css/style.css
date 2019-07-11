@@ -1,0 +1,20 @@
+body {
+  background-color:rgb(20, 5, 90);
+  color:royalblue;
+  font-size: 26;
+  text-align: center;
+}
+.jumbotron {
+  background-color: #777777;
+ margin:4% 10%;
+}
+.fruit-left {
+
+  width: 100px;
+}
+
+
+.fruit-right {
+
+  width: 200px;
+}

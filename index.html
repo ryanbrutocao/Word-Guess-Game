@@ -5,26 +5,67 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./assets/css/reset.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
   <link rel="stylesheet" href="./assets/css/style.css">
   <link rel="text/javascript" href="./assets/javascript/game.js">
   
   <title>Document</title>
 </head>
 <body>
+  <header>
+  
+  <h1></h1>
+  
+  </header>
+  <div class="jumbotron">
+    <div class="row">
+        <div class="col-3"> <img class="fruit-left" src="./assets/images/orange.jpg" alt="orange"> 
+                            <br><img class="fruit-left" src="./assets/images/apple.gif" alt="apple">
+                            <br> <img src="./assets/images/pineapple.gif" alt="pineapple">
+                          </div>
+        <div class="col-6">
+      <h1 class="display-7"> Welcome to the Grocery Guessing Game!</h1>
+      <p id="groceryRulesText" class="text-dark">Press any key to start.</p>
+     
+      <hr class="my-3">
+      <span class="badge badge-success" >Letters in your word</span><br>
+      <button type="button" class="btn btn-primary "  type="text" id="correctLettersAndDashesText">
+          <span class="badge badge-light"></span>
+        </button>
 
-<h1> Grocery Guessing Game!</h1>
-<p id="groceryRulesText">Press any key to start.</p>
+      <br>
+      <br>
+    <span class="badge badge-danger" >Wrong Letters</span> 
+    <br><a class="btn btn-danger btn-lg text-light" type="text" id="wrongLetterText" >     </a>
+<br>
+<div class="row">
+  <div class="col-4">
+      <span class="badge badge-success" >Wins</span> 
+      <br><a class="btn btn-primary btn-lg text-light" type="text" id="userWinsText" ></a><br>
+  
 
-Letters in your word: <p type="text" id="correctLettersAndDashesText" ></p>
+  </div>
+  <div class="col-4">
+      <span class="badge badge-success" >Guesses Remaining</span> 
+      <br><a class="btn btn-primary btn-lg text-light" type="text" id="userGuessesRemainingText" ></a><br>
+      </div>
 
-Wrong letters: <p type="text" id="wrongLetterText"></p>
-Guesses Remaining: <p type="text" id="userGuessesRemainingText"></p>
+    <div class="col-4">
+        <span class="badge badge-success" >Losses</span> 
+        <br><a class="btn btn-primary btn-lg text-light" type="text" id="userLossesText" ></a><br>
+      </div>      
+  
+  </div>
 
-User Wins: <p type="text" id="userWinsText"></p>
+  
+  </div>
+      <div class="col-3"><img class="fruit-right"  src="./assets/images/fruit.jpg" alt="fruit">
+      <br> <br><img class="fruit-right" src="./assets/images/watermellon.jpg" alt="watermelon">
+      </div>
+  </div class="row">
+  </div>
 
-User Losses:<p type="text" id="userLossesText"></p>
 
-<p id="demo"></p>
 <!-- <p type="text" id="letterPressedText" onkeypress=myFunction()></p> -->
 
   <script src="./assets/javascript/game.js"></script>
