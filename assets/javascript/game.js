@@ -58,10 +58,10 @@ function reset () {
   wrongLetters=[];
   
   for (i=0; i<numberOfLetters; i++) {
-    correctLettersAndDashes.push("_");
+    correctLettersAndDashes.push("_".replace(',', ''));
   }
   
-  document.getElementById("userLossesText").innerHTML = userLosses; //not working properly
+  document.getElementById("userLossesText").innerHTML = userLosses; 
   document.getElementById("wrongLetterText").innerHTML = wrongLetters;
   document.getElementById("userGuessesRemainingText").innerHTML = userGuessesRemaining;
   document.getElementById("userWinsText").innerHTML = userWins;

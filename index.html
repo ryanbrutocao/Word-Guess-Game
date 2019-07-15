@@ -21,7 +21,7 @@
     <div class="row">
         <div class="col-3"> <img class="fruit-left" src="./assets/images/orange.jpg" alt="orange"> 
                             <br><img class="fruit-left" src="./assets/images/apple.gif" alt="apple">
-                            <br> <img src="./assets/images/pineapple.gif" alt="pineapple">
+                            <br> <img class="fruit-left" src="./assets/images/pineapple.gif" alt="pineapple">
                           </div>
         <div class="col-6">
       <h1 class="display-7"> Welcome to the Grocery Guessing Game!</h1>
@@ -38,19 +38,18 @@
     <span class="badge badge-danger" >Wrong Letters</span> 
     <br><a class="btn btn-danger btn-lg text-light" type="text" id="wrongLetterText" >     </a>
 <br>
-<div class="row">
-  <div class="col-4">
+<div class="row" id="winGuessLoss">
+  <div class="col-4 col-sm-3">
       <span class="badge badge-success" >Wins</span> 
       <br><a class="btn btn-primary btn-lg text-light" type="text" id="userWinsText" ></a><br>
   
-
   </div>
-  <div class="col-4">
+  <div class="col-4 col-sm-6">
       <span class="badge badge-success" >Guesses Remaining</span> 
       <br><a class="btn btn-primary btn-lg text-light" type="text" id="userGuessesRemainingText" ></a><br>
       </div>
 
-    <div class="col-4">
+    <div class="col-4 col-sm-3 ">
         <span class="badge badge-success" >Losses</span> 
         <br><a class="btn btn-primary btn-lg text-light" type="text" id="userLossesText" ></a><br>
       </div>      
